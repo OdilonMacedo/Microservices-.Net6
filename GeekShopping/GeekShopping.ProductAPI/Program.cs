@@ -8,7 +8,20 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//MYSQL
+var connection = builder.Configuration["MySQLConnection:MySQLConnectionString"];
+
+builder.Services.AddDbContext<MySQLContext>(options =>
+        options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 31))));
+
+
+
 // Add services to the container.
+
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddControllers();
 
@@ -31,28 +44,15 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-//MYSQL
-var connection = builder.Configuration["MySQLConnection:MySQLConnectionString"];
-
-builder.Services.AddDbContext<MySQLContext>(options =>
-        options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 31))));
-
-IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
-builder.Services.AddSingleton(mapper);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddSwaggerGen(c =>
 {
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "GeekShopping.ProductAPI", Version="v1" });
     c.EnableAnnotations();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"Enter 'Bearer' [space] and your token!",
-        Name = "Authoriation",
+        Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer"
@@ -72,10 +72,14 @@ builder.Services.AddSwaggerGen(c =>
                 Name = "Bearer",
                 In = ParameterLocation.Header
             },
-            new List<String>()
+            new List<string>()
         }
     });
 });
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+
 
 var app = builder.Build();
 
@@ -87,6 +91,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseAuthentication();
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GeekShopping.ProductAPI.Migrations
 {
-    public partial class AddProductDataTableOnDb : Migration
+    public partial class AddProductAPIList : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,6 +33,16 @@ namespace GeekShopping.ProductAPI.Migrations
                     table.PrimaryKey("PK_product", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "product",
+                columns: new[] { "id", "category_name", "description", "image_url", "Name", "Price" },
+                values: new object[] { 2L, "Skirt", "Description", "", "Name", 69.9m });
+
+            migrationBuilder.InsertData(
+                table: "product",
+                columns: new[] { "id", "category_name", "description", "image_url", "Name", "Price" },
+                values: new object[] { 4L, "Sausage Hair", "Actually free, nobody want's that shit", "Caruzo Likes it", "Caruzo's hair", 0m });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
