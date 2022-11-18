@@ -2,7 +2,7 @@
 
 namespace GeekShopping.web.Models
 {
-    public class ProductModel
+    public class ProductViewModel
     {
         public long Id { get; set; }
         public string Name { get; set; }

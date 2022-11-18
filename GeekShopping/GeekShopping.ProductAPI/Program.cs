@@ -15,9 +15,6 @@ builder.Services.AddDbContext<MySQLContext>(options =>
         options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 31))));
 
 
-
-// Add services to the container.
-
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
