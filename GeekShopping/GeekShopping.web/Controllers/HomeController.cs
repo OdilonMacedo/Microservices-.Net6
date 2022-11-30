@@ -85,15 +85,6 @@ namespace GeekShopping.web.Controllers
         public async Task<IActionResult> Login()
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            if (accessToken == null)
-            {
-                Console.WriteLine("ERRO NO TOKEN!");
-            }
-            else
-            {
-                Console.WriteLine("TUDO CERTO COM O TOKEN");
-            }
             return RedirectToAction(nameof(Index));
         }
 

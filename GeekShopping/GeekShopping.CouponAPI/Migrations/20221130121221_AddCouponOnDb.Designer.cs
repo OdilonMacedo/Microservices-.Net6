@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeekShopping.CouponAPI.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20221125150002_AddedCouponOnDb")]
-    partial class AddedCouponOnDb
+    [Migration("20221130121221_AddCouponOnDb")]
+    partial class AddCouponOnDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

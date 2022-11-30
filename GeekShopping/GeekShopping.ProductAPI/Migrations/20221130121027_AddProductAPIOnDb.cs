@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GeekShopping.ProductAPI.Migrations
 {
-    public partial class AddedProductApi : Migration
+    public partial class AddProductAPIOnDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

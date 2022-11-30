@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GeekShopping.CartAPI.Migrations
 {
-    public partial class AddedcartApionDb : Migration
+    public partial class AddCartOnDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

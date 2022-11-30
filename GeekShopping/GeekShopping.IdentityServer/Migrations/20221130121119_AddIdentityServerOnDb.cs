@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GeekShopping.IdentityServer.Migrations
 {
-    public partial class AddedIdentityServer : Migration
+    public partial class AddIdentityServerOnDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

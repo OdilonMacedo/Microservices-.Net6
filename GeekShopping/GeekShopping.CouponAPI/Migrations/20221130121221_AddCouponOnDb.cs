@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GeekShopping.CouponAPI.Migrations
 {
-    public partial class AddedCouponOnDb : Migration
+    public partial class AddCouponOnDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

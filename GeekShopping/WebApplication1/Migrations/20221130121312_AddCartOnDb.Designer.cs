@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeekShopping.CartAPI.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20221123173521_AddedcartApionDb")]
-    partial class AddedcartApionDb
+    [Migration("20221130121312_AddCartOnDb")]
+    partial class AddCartOnDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
