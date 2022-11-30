@@ -38,8 +38,6 @@ namespace GeekShopping.IdentityServer.Initializer
                 FirstName = "Odilon",
                 LastName = "Admin",
             };
-            Console.WriteLine("Passou2");
-
 
             _user.CreateAsync(admin, "Erudio123$").GetAwaiter().GetResult();
             _user.AddToRoleAsync(admin, IdentityConfiguration.Admin).GetAwaiter().GetResult();

@@ -1,10 +1,8 @@
-﻿using System.Reflection;
-using GeekShopping.web.Models;
+﻿using GeekShopping.web.Models;
 using GeekShopping.web.Services.IServices;
 using GeekShopping.web.Utils;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeekShopping.web.Controllers

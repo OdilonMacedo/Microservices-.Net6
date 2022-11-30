@@ -4,12 +4,12 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:58318",
+      "applicationUrl": "http://localhost:18281",
       "sslPort": 4445
     }
   },
   "profiles": {
-    "WebApplication1": {
+    "GeekShopping.CartAPI": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

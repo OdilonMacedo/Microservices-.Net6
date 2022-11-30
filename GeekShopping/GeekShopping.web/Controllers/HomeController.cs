@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
-using GeekShopping.web.Models;
+﻿using GeekShopping.web.Models;
 using GeekShopping.web.Services.IServices;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace GeekShopping.web.Controllers
 {
@@ -14,7 +13,9 @@ namespace GeekShopping.web.Controllers
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService)
+        public HomeController(ILogger<HomeController> logger,
+            IProductService productService,
+            ICartService cartService)
         {
             _logger = logger;
             _productService = productService;
@@ -22,9 +23,8 @@ namespace GeekShopping.web.Controllers
         }
 
         public async Task<IActionResult> Index()
-        { 
-            var token = await HttpContext.GetTokenAsync("");
-            var products = await _productService.FindAllProducts(token);
+        {
+            var products = await _productService.FindAllProducts("");
             return View(products);
         }
 
@@ -42,6 +42,7 @@ namespace GeekShopping.web.Controllers
         public async Task<IActionResult> DetailsPost(ProductViewModel model)
         {
             var token = await HttpContext.GetTokenAsync("access_token");
+
             CartViewModel cart = new()
             {
                 CartHeader = new CartHeaderViewModel
@@ -54,7 +55,7 @@ namespace GeekShopping.web.Controllers
             {
                 Count = model.Count,
                 ProductId = model.Id,
-                Product = await _productService.FindProductById(model.Id, token),
+                Product = await _productService.FindProductById(model.Id, token)
             };
 
             List<CartDetailViewModel> cartDetails = new List<CartDetailViewModel>();
@@ -68,7 +69,6 @@ namespace GeekShopping.web.Controllers
             }
             return View(model);
         }
-
 
         public IActionResult Privacy()
         {
@@ -85,7 +85,16 @@ namespace GeekShopping.web.Controllers
         public async Task<IActionResult> Login()
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");
-            return RedirectToAction("Index");
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            if (accessToken == null)
+            {
+                Console.WriteLine("ERRO NO TOKEN!");
+            }
+            else
+            {
+                Console.WriteLine("TUDO CERTO COM O TOKEN");
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Logout()

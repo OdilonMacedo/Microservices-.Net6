@@ -1,5 +1,6 @@
-﻿namespace GeekShopping.web.Models
+﻿using GeekShopping.web.Models;
 
+namespace GeekShopping.web.Models
 {
     public class CartDetailViewModel
     {
